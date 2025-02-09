@@ -12,7 +12,6 @@
 #include "font.h"
 #include "ws2812.pio.h"
 
-// ---------------- Variáveis - Início ----------------
 static volatile uint32_t last_time = 0; // Tempo do último callback
 static ssd1306_t *ssd_pointer; // Ponteiro para o display
 static char string_a[] = "LED VERDE 0"; // Estado do LED verde
@@ -21,7 +20,6 @@ static char string_b[] = "LED AZUL 0";  // Estado do LED azul
 bool led_green_state = false;  // Estado do LED Verde
 bool led_blue_state = false;   // Estado do LED Azul
 
-// ---------------- Configurações - Início ----------------
 #define UART_ID uart0 // Porta UART
 #define I2C_PORT i2c1 // Porta I2C
 #define I2C_SDA 14 // Pino SDA
@@ -35,8 +33,6 @@ bool led_blue_state = false;   // Estado do LED Azul
 #define LUZ 1 // Intensidade da luz
 #define LED_COUNT 25 // Matriz
 #define LED_PIN 7 // WS2812
-
-// ---------------- SETUP - INICIO ----------------
 
 void setup_init(ssd1306_t *ssd){
 
@@ -72,9 +68,6 @@ void setup_init(ssd1306_t *ssd){
   gpio_put(BLUE_RGB, 0);
 }
 
-// ---------------- SETUP - FIM --------------------------
-
-// ---------------- Interrupções - Início ----------------
 void gpio_irq_callback(uint gpio, uint32_t events) {
   uint32_t current_time = to_ms_since_boot(get_absolute_time());
   if (current_time - last_time > 200) { // Debouncing de 200ms
@@ -91,17 +84,14 @@ void gpio_irq_callback(uint gpio, uint32_t events) {
       printf("Botão B pressionado mudou o estado do LED azul para %s \n", led_blue_state ? "1" : "0");
     }
 
-    // Atualiza a tela após o pressionamento
     ssd1306_fill(ssd_pointer, false);
     ssd1306_draw_string(ssd_pointer, string_a, 8, 40);
     ssd1306_draw_string(ssd_pointer, string_b, 8, 48);
     ssd1306_send_data(ssd_pointer);
   }
 }
-// ---------------- Interrupções - Fim ----------------
+// fim das interrupções
 
-
-// ---------------- Main - Início ----------------
 int main() {
   ssd1306_t ssd;
   ssd_pointer = &ssd;
@@ -145,4 +135,3 @@ int main() {
     }
   }
 }
-// ---------------- Main - Fim ----------------
