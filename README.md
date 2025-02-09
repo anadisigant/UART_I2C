@@ -3,7 +3,7 @@
 Repositório criado a fim de armazenar a tarefa realizada para consolidar a compreensão dos conceitos sobre o uso de interfaces de comunicação serial no RP2040 e explorar as funcionalidades da placa de desenvolvimento BitDogLab.
 
 __Autora:__ Ana Karolina Disigant Reis <br>
-__Vídeo da aplicação:__ [Comunicação Serial com RP2040]([https://www.youtube.com/watch?v=mAYgV4E5cXA])
+__Vídeo da aplicação:__ [Comunicação Serial com RP2040](https://www.youtube.com/watch?v=mAYgV4E5cXA)
 
 ## Objetivos
 • Compreender o funcionamento e a aplicação de comunicação serial em microcontroladores; <br>
